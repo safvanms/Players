@@ -1,0 +1,108 @@
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+  gap: 20px;
+}
+
+.initial-palyers{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+form > input {
+  width: 200px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid gray;
+  text-transform: capitalize;
+}
+
+form > button {
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  background-color: rgb(22, 22, 23);
+}
+
+form>button:hover{
+     background-color: rgb(10, 10, 114);
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid rgb(43, 43, 108);
+  border-radius: 7px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.player>button{
+     height: 30px;
+     border-radius: 4px;
+     border: none;
+     color: #fff;
+     background-color: blueviolet;
+}
+
+.player>button:hover{
+     background-color: rgb(97, 31, 160);
+}
+
+.player-details{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     width: 300px;
+     padding: 15px;
+     border: 1px solid black;
+     border-radius: 10px;
+}
+
+.player-details>h2{
+     text-transform: uppercase;
+     margin: 10px 0px 0px 0px;
+     font-weight: 900;
+     color: rgb(1, 1, 86);
+}
+
+.player-details>h3{
+     text-transform: uppercase;
+     font-weight: 900;
+     color: blue;
+}
+
+.other-det{
+     padding: 5px;
+}
+.other-det>*{
+     margin-top: 3px;
+}
+
+.err-msg{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 300px;
+}
+.err-msg>*{
+     font-size: 13px;
+}
