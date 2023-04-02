@@ -84,7 +84,7 @@ export default function Home() {
         ) : (
           <div className="err-msg">
             {players === null ? (
-              <p>API limit reached. Please try again tomorrow.</p>
+              <p>API daily limit reached. Please try again tomorrow.</p>
             ) : (
               <p>Sorry! No player found.</p>
             )}
