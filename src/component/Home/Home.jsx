@@ -10,15 +10,19 @@ export default function Home() {
   const [playerName, SetPlayerName] = useState('')
   const [cricketer, setCricketer] = useState('')
   const [stats, setStats] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const getPlayers = async () => {
+    setLoading(true)
     try {
       const res = await axios.get(
         `https://api.cricapi.com/v1/players?apikey=3be024bd-df17-4315-8016-3b0376a6feea&offset=0&search=${playerName}`,
       )
       if (res.data.status === 'failure') {
+        setLoading(true)
         setPlayers(null)
       } else {
+        setLoading(false)
         setPlayers(res.data.data)
       }
     } catch (error) {
@@ -43,7 +47,7 @@ export default function Home() {
   }
 
   const findPlayer = async (id) => {
-    console.log(id)
+    setLoading(true)
     try {
       const res = await axios.get(
         `https://api.cricapi.com/v1/players_info?apikey=3be024bd-df17-4315-8016-3b0376a6feea&id=${id}`,
@@ -52,11 +56,13 @@ export default function Home() {
       setStats([res.data.data.stats])
       setFormData({ name: '' })
       setPlayers([])
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
   }
 
+  console.log(loading)
 
   return (
     <div>
@@ -72,6 +78,14 @@ export default function Home() {
         </form>
       </div>
 
+      {loading && (
+        <div className="spinner">
+          <span class="cricket-emoji" role="img" aria-label="cricket">
+            &#127951;
+          </span>
+        </div>
+      )}
+
       <div className="initial-palyers">
         {players ? (
           players.map((player) => (
@@ -83,10 +97,10 @@ export default function Home() {
           ))
         ) : (
           <div className="err-msg">
-            {players === null ? (
-              <p>API daily limit reached. Please try again tomorrow.</p>
-            ) : (
-              <p>Sorry! No player found.</p>
+            {players === null && (
+              <p>
+                API daily limit has been reached. Please try again tomorrow.
+              </p>
             )}
           </div>
         )}
@@ -117,7 +131,7 @@ export default function Home() {
                   </div>
                   <div className="stats">
                     <h3 style={{ fontWeight: '900' }}>BATTING STATS</h3>
-                    <h5 style={{ fontWeight: '600' }}>ODI CRICKET</h5>
+                    <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
                     <hr />
                     {stats.map((player) => (
                       <>
@@ -163,7 +177,7 @@ export default function Home() {
                           </p>
                         </div>
                         <hr />
-                        <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
+                        <h5 style={{ fontWeight: '600' }}>ODI CRICKET</h5>
                         <br />
                         <div className="odi-det">
                           <p>

@@ -107,7 +107,7 @@ form > button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height:70vh;
+  height: 70vh;
 }
 .err-msg > * {
   font-size: 13px;
@@ -118,6 +118,7 @@ form > button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 }
 
 .odi-det {
@@ -144,4 +145,21 @@ p:nth-child(13) {
   width: 200px;
   display: flex;
   justify-content: space-between;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cricket-emoji {
+  animation: rotate 2s linear infinite;
+  font-size: 25px;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
