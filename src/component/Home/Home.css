@@ -6,12 +6,12 @@
   gap: 20px;
 }
 
-.initial-palyers{
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 20px;
-flex-wrap: wrap;
+.initial-palyers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 form {
@@ -40,8 +40,8 @@ form > button {
   background-color: rgb(22, 22, 23);
 }
 
-form>button:hover{
-     background-color: rgb(10, 10, 114);
+form > button:hover {
+  background-color: rgb(10, 10, 114);
 }
 
 .player {
@@ -54,55 +54,94 @@ form>button:hover{
   padding: 15px;
 }
 
-.player>button{
-     height: 30px;
-     border-radius: 4px;
-     border: none;
-     color: #fff;
-     background-color: blueviolet;
+.player > button {
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  background-color: blueviolet;
 }
 
-.player>button:hover{
-     background-color: rgb(97, 31, 160);
+.player > button:hover {
+  background-color: rgb(97, 31, 160);
 }
 
-.player-details{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     width: 300px;
-     padding: 15px;
-     border: 1px solid black;
-     border-radius: 10px;
+.player-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.player-details>h2{
-     text-transform: uppercase;
-     margin: 10px 0px 0px 0px;
-     font-weight: 900;
-     color: rgb(1, 1, 86);
+.player-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
-.player-details>h3{
-     text-transform: uppercase;
-     font-weight: 900;
-     color: blue;
+.player-details > h2 {
+  text-transform: uppercase;
+  margin: 10px 0px 0px 0px;
+  font-weight: 900;
+  color: rgb(1, 1, 86);
 }
 
-.other-det{
-     padding: 5px;
-}
-.other-det>*{
-     margin-top: 3px;
+.player-details > h3 {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: blue;
 }
 
-.err-msg{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 300px;
+.other-det {
+  padding: 5px;
 }
-.err-msg>*{
-     font-size: 13px;
+.other-det > * {
+  margin-top: 3px;
+}
+
+.err-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.err-msg > * {
+  font-size: 13px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.odi-det {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.odi-det > p:nth-child(1),
+p:nth-child(3),
+p:nth-child(5),
+p:nth-child(7),
+p:nth-child(9),
+p:nth-child(11),
+p:nth-child(13) {
+  background-color: #eee7e7;
+  border-radius: 2px;
+}
+
+.odi-det > p {
+  margin: 0;
+  padding: 0px 5px 0px 5px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
 }
