@@ -73,6 +73,7 @@ export default function Home() {
             placeholder="Enter Player name"
             value={formData.name}
             onChange={handleChange}
+			required
           />
           <button type="submit">Submit</button>
         </form>
@@ -98,9 +99,10 @@ export default function Home() {
         ) : (
           <div className="err-msg">
             {players === null && (
-              <p>
-                API daily limit has been reached. Please try again tomorrow.
-              </p>
+              <div>
+                <p>API daily limit has been reached.</p>
+                <p>Please try again tomorrow.</p>
+              </div>
             )}
           </div>
         )}
