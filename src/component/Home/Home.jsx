@@ -11,6 +11,7 @@ export default function Home() {
   const [cricketer, setCricketer] = useState('')
   const [stats, setStats] = useState([])
   const [loading, setLoading] = useState(false)
+  const [noData, setNoData] = useState(false)
 
   const getPlayers = async () => {
     setLoading(true)
@@ -18,12 +19,19 @@ export default function Home() {
       const res = await axios.get(
         `https://api.cricapi.com/v1/players?apikey=3be024bd-df17-4315-8016-3b0376a6feea&offset=0&search=${playerName}`,
       )
+      if (!res.data || !res.data.data || res.data.data.length === 0) {
+        setNoData(true)
+        setFormData({name:''})
+      } else {
+        setNoData(false)
+      }
       if (res.data.status === 'failure') {
         setLoading(true)
         setPlayers(null)
       } else {
         setLoading(false)
         setPlayers(res.data.data)
+        setFormData({name:''})
       }
     } catch (error) {
       console.error(error)
@@ -62,7 +70,6 @@ export default function Home() {
     }
   }
 
-  console.log(loading)
 
   return (
     <div>
@@ -73,7 +80,7 @@ export default function Home() {
             placeholder="Enter Player name"
             value={formData.name}
             onChange={handleChange}
-			required
+            required
           />
           <button type="submit">Submit</button>
         </form>
@@ -88,6 +95,8 @@ export default function Home() {
       )}
 
       <div className="initial-palyers">
+      {noData && <p style={{color:"red"}}>Sorry ! No such player found .</p>}
+
         {players ? (
           players.map((player) => (
             <div className="player" key={player.id}>
@@ -98,11 +107,14 @@ export default function Home() {
           ))
         ) : (
           <div className="err-msg">
-            {players === null && (
-              <div>
-                <p>API daily limit has been reached.</p>
-                <p>Please try again tomorrow.</p>
-              </div>
+            {players.map(
+              (player) =>
+                player.data.status === 'failure' && (
+                  <div>
+                    <p>API daily limit has been reached.</p>
+                    <p>Please try again tomorrow.</p>
+                  </div>
+                ),
             )}
           </div>
         )}

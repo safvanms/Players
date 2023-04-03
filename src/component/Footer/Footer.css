@@ -8,6 +8,8 @@
   height: 80px;
 }
 
-.footer>p:nth-child(1),p:nth-child(2){
+.footer>p:nth-child(1),p:nth-child(2),p:nth-child(3){
      margin: 0;
+     background-color: transparent;
+     font-size: 10px;
 }
