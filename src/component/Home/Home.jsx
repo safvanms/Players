@@ -12,6 +12,7 @@ export default function Home() {
   const [stats, setStats] = useState([])
   const [loading, setLoading] = useState(false)
   const [noData, setNoData] = useState(false)
+  const [apiLimit, setApiLimit] = useState(false)
 
   const getPlayers = async () => {
     setLoading(true)
@@ -21,17 +22,18 @@ export default function Home() {
       )
       if (!res.data || !res.data.data || res.data.data.length === 0) {
         setNoData(true)
-        setFormData({name:''})
+        setFormData({ name: '' })
       } else {
         setNoData(false)
       }
       if (res.data.status === 'failure') {
         setLoading(true)
-        setPlayers(null)
+        setNoData(false)
+        setApiLimit(true)
       } else {
         setLoading(false)
         setPlayers(res.data.data)
-        setFormData({name:''})
+        setFormData({ name: '' })
       }
     } catch (error) {
       console.error(error)
@@ -70,6 +72,7 @@ export default function Home() {
     }
   }
 
+  console.log(apiLimit)
 
   return (
     <div>
@@ -95,29 +98,27 @@ export default function Home() {
       )}
 
       <div className="initial-palyers">
-      {noData && <p style={{color:"red"}}>Sorry ! No such player found .</p>}
-
-        {players ? (
-          players.map((player) => (
-            <div className="player" key={player.id}>
-              <h3>{player.name}</h3>
-              <h4>{player.country}</h4>
-              <button onClick={() => findPlayer(player.id)}> View </button>
-            </div>
-          ))
-        ) : (
-          <div className="err-msg">
-            {players.map(
-              (player) =>
-                player.data.status === 'failure' && (
-                  <div>
-                    <p>API daily limit has been reached.</p>
-                    <p>Please try again tomorrow.</p>
-                  </div>
-                ),
-            )}
-          </div>
+        {noData && (
+          <p style={{ color: 'red' }}>Sorry ! No such player found .</p>
         )}
+
+        {players
+          ? players.map((player) => (
+              <div className="player" key={player.id}>
+                <h3>{player.name}</h3>
+                <h4>{player.country}</h4>
+                <button onClick={() => findPlayer(player.id)}> View </button>
+              </div>
+            ))
+          : ''}
+        <div className="err-msg">
+          {apiLimit && (
+            <div>
+              <p>API daily limit has been reached.</p>
+              <p>Please try again tomorrow.</p>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="player-card">
