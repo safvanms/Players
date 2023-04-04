@@ -14,6 +14,7 @@ export default function Home() {
   const [noData, setNoData] = useState(false)
   const [apiLimit, setApiLimit] = useState(false)
 
+  
   const getPlayers = async () => {
     setLoading(true)
     try {
@@ -72,7 +73,6 @@ export default function Home() {
     }
   }
 
-  console.log(apiLimit)
 
   return (
     <div>
@@ -98,6 +98,7 @@ export default function Home() {
       )}
 
       <div className="initial-palyers">
+        
         {noData && (
           <p style={{ color: 'red' }}>Sorry ! No such player found .</p>
         )}
@@ -499,18 +500,12 @@ export default function Home() {
             </>
           ))
         ) : (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: 'red',
-            }}
-          >
-            <p>Oops !  Player's details </p>
+          <div className="err-msg">
+          <div>
+            <p>Oops ! Player's details </p>
             <p>are currently unavailable at this time</p>
           </div>
+        </div>
         )}
       </div>
     </div>
