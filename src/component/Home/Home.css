@@ -87,6 +87,7 @@ form > button:hover {
   padding: 15px;
   border: 1px solid black;
   border-radius: 10px;
+  height: 100%;
 }
 
 .player-details > h2 {
@@ -113,22 +114,20 @@ form > button:hover {
   height: 70vh;
   margin-top: 80px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.err-msg>div{
-  display: flex;
+display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.err-msg >div>p{
+
+.err-msg >p{
   font-size: 13px;
   margin: 0;
 }
 
-.err-msg >div>p:nth-child(1){
+.err-msg >p:nth-child(1){
   color: rgb(192, 4, 4);
-}.err-msg >div>p:nth-child(2){
+}.err-msg >p:nth-child(2){
   color: rgb(100, 94, 94);
 }
 
@@ -147,13 +146,7 @@ form > button:hover {
   align-items: center;
 }
 
-.odi-det > p:nth-child(1),
-p:nth-child(3),
-p:nth-child(5),
-p:nth-child(7),
-p:nth-child(9),
-p:nth-child(11),
-p:nth-child(13) {
+.odi-det > p:nth-child(odd) {
   background-color: #eee7e7;
   border-radius: 2px;
 }
@@ -170,6 +163,7 @@ p:nth-child(13) {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .cricket-emoji {
