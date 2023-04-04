@@ -172,17 +172,17 @@ export default function Home() {
                   <h5>DOB : {player.dateOfBirth}</h5>
                 </div>
                 <div className="stats">
-                  <h3 style={{ fontWeight: '900' }}>BATTING STATS</h3>
-                  <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
-                  <hr />
                   {stats.some((player) => player.length < 100) ? (
-                    <div className="err-msg">
+                    <div className="nodetails">
                       <p>Oops ! Player's details are</p>
                       <p> yet to be Added . try again later</p>
                     </div>
                   ) : (
                     stats.map((player) => (
                       <>
+                      <h3 style={{ fontWeight: '900' }}>BATTING STATS</h3>
+                      <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
+                      <hr />
                         <div className="odi-det">
                           <p>
                             Matches : <span>{player[0].value}</span>
