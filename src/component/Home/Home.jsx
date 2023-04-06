@@ -19,8 +19,8 @@ export default function Home() {
   const [cricketer, setCricketer] = useState('')
   const [stats, setStats] = useState([])
   const [loading, setLoading] = useState(false)
-  const [noData, setNoData] = useState(false)
   const [noInfo, setNoInfo] = useState(false)
+  const [noData, setNoData] = useState(false)
   const [apiLimit, setApiLimit] = useState(false)
   const [currentApiKeyIndex, setCurrentApiKeyIndex] = useState(0)
 
@@ -36,6 +36,12 @@ export default function Home() {
         res = await axios.get(
           `https://api.cricapi.com/v1/players?apikey=${API_KEYS[i]}&offset=0&search=${playerName}`,
         )
+        if (!res.data || !res.data.data || res.data.data.length === 0) {
+          setNoData(true)
+          setFormData({ name: '' })
+        } else {
+          setNoData(false)
+        }
         if (res.data.status === 'success') {
           setLoading(false)
           setPlayers(res.data.data)
@@ -44,15 +50,11 @@ export default function Home() {
           return
         }
       }
-      if (!res.data || !res.data.data || res.data.data.length === 0) {
-        setNoData(true)
-        setFormData({ name: '' })
-      }
 
       if (res.data && res.data.status === 'failure') {
         setLoading(true)
-        setNoData(false)
         setApiLimit(true)
+        setNoData(false)
       }
     } catch (error) {
       console.error(error)
@@ -130,10 +132,16 @@ export default function Home() {
               <div className="player" key={player.id}>
                 <h3>{player.name}</h3>
                 <h4>{player.country}</h4>
-                <button onClick={() => findPlayer(player.id)}> View </button>
+                <button
+                  style={{ fontSize: '15px' }}
+                  onClick={() => findPlayer(player.id)}
+                >
+                  View
+                </button>
               </div>
             ))
           : null}
+
         {apiLimit && (
           <div className="err-msg">
             <p>API daily limit has been reached.</p>
@@ -180,9 +188,9 @@ export default function Home() {
                   ) : (
                     stats.map((player) => (
                       <>
-                      <h3 style={{ fontWeight: '900' }}>BATTING STATS</h3>
-                      <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
-                      <hr />
+                        <h3 style={{ fontWeight: '900' }}>BATTING STATS</h3>
+                        <h5 style={{ fontWeight: '600' }}>TEST CRICKET</h5>
+                        <hr />
                         <div className="odi-det">
                           <p>
                             Matches : <span>{player[0].value}</span>
